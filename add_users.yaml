@@ -1,0 +1,11 @@
+---
+- name: add users
+  hosts: localhost
+  tasks:
+    - user: name="{{item.name}}" state=present
+      loop:
+      - name: t1
+      - name: t2
+      when: 
+        - ansible_os_family == "RedHat" 
+        - ansible_distribution_major_version | int > 6

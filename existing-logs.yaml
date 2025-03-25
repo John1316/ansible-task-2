@@ -1,0 +1,15 @@
+---
+- name: Checking logsss
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Check file logs
+      ansible.legacy.file:
+        path: /var/log/mya
+        state: directory
+        mode: '0755'
+        owner: 'root'
+    - name: Display debug message for ubuntu
+      ansible.legacy.debug:
+        msg: "Log directory exists sir"
+      when: ansible_distribution == "Ubuntu"

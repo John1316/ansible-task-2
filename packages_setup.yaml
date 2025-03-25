@@ -1,0 +1,15 @@
+---
+  - name: install packages
+    hosts: localhost
+    vars: 
+      packages: 
+        - mysql
+        - iftop
+        - net-tools
+    tasks:
+      - name: install packages
+        package:
+          name: "{{packages}}"
+          state: present
+        loop: "{{packages}}"
+        when: ansible_distribution == "RedHat" or ansible_distribution == "CentOS"
